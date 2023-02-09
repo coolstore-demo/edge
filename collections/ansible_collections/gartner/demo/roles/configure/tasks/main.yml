@@ -1,0 +1,3 @@
+---
+# tasks file for configure
+- include_tasks: 10_install_packages.yml

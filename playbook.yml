@@ -1,12 +1,19 @@
 ---
-- name: Playbook to create and configure Edge Environments
+- name: Playbook to create Edge Environments
   hosts: localhost
   collections:
     - amazon.aws
     - ansible.utils
     - gartner.demo
-    - community.general
-    - containers.podman
 
   roles:
   - {role: gartner.demo.aws, when: my_name is defined}
+
+- name: Playbook to configure Edge Environments
+  hosts: all
+  collections:
+    - gartner.demo
+    - containers.podman
+
+  roles:
+  - {role: gartner.demo.configure}
