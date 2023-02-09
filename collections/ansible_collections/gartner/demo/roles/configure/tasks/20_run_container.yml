@@ -1,5 +1,5 @@
 ---
-- name: Pull image from quay.io
+- name: Create container
   containers.podman.podman_container:
     name: "{{ container_name }}"
     image: "{{ container_image }}"
