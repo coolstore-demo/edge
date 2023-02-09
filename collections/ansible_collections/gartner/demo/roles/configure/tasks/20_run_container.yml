@@ -1,10 +1,6 @@
 ---
 - name: Pull image from quay.io
-  containers.podman:
+  containers.podman.podman_container:
     name: "{{ container_name }}"
     image: "{{ container_image }}"
-    state: present
-
-- name: Run the container
-  name: "{{ container_name }}"
-  state: started 
+    state: started
