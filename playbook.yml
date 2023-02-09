@@ -5,6 +5,7 @@
     - amazon.aws
     - ansible.utils
     - gartner.demo
+    - containers.podman
 
   roles:
   - {role: gartner.demo.aws, when: my_name is defined}
