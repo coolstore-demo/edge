@@ -100,3 +100,9 @@
         host: "{{ paths['networkInterfaces[0].accessConfigs[0].natIP'] }}"
         port: 22
         state: started
+
+    - name: Install podman
+      ansible.builtin.package:
+        name: "podman"
+        state: latest
+      become: true
