@@ -102,7 +102,7 @@
         state: started
 
     - name: Install podman
-      ansible.builtin.package:
+      ansible.builtin.dnf:
         name: "podman"
         state: latest
       become: true
