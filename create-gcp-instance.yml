@@ -101,7 +101,11 @@
         port: 22
         state: started
 
-    - name: Install podman
+- name: Configure
+  vars:
+  - ansible_python_interpreter: /usr/libexec/platform-python 
+  tasks:
+   - name: Install podman
       ansible.builtin.dnf:
         name: "podman"
         state: latest
