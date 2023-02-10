@@ -105,8 +105,8 @@
   vars:
   - ansible_python_interpreter: /usr/libexec/platform-python 
   tasks:
-   - name: Install podman
-      ansible.builtin.dnf:
-        name: "podman"
-        state: latest
-      become: true
+  - name: Install podman
+    ansible.builtin.dnf:
+      name: "podman"
+      state: latest
+    become: true
