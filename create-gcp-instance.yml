@@ -102,6 +102,7 @@
         state: started
 
 - name: Configure
+  hosts: all
   vars:
   - ansible_python_interpreter: /usr/libexec/platform-python 
   tasks:
