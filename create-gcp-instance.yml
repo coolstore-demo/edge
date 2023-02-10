@@ -97,6 +97,6 @@
 
     - name: Wait for SSH to respond
       ansible.builtin.wait_for:
-        host: "{{ paths['instances[0].public_ip_address'] }}"
+        host: "{{ paths['networkInterfaces.natIP'] }}"
         port: 22
         state: started
