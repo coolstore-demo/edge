@@ -85,14 +85,6 @@
         project: "{{ gcp_project }}"
         auth_kind: serviceaccount
         state: present
-
-    - name: Gather info about instance
-      google.cloud.compute_node_group_info:
-        zone: "{{ gcp_zone }}"
-        filters:
-        - name = demo-redhat
-        project: red-hat-mbu
-        auth_kind: serviceaccount
       register: gcp_node_info
 
     - name: debug node info
