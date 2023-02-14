@@ -6,3 +6,4 @@
 
   roles:
   - {role: gartner.demo.aws, when: my_name is defined}
+  - {role: gartner.demo.gcp, when: gcp_region is defined}
