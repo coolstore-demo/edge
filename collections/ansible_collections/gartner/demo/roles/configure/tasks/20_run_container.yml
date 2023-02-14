@@ -4,3 +4,6 @@
     name: "{{ container_name }}"
     image: "{{ container_image }}"
     state: started
+    expose:
+      - 80
+      - 443
