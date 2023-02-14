@@ -8,7 +8,7 @@
   tasks:
     - name: Remove all containers
       shell: |
-        podman rm $(podman ps -a -q);
+        podman rm -f $(podman ps -a -q);
 
     - name: Set container image
       set_fact:
