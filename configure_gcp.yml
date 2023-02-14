@@ -1,0 +1,10 @@
+---
+- name: Playbook to configure Edge Environments
+  hosts: all
+  become: true
+  collections:
+    - gartner.demo
+    - containers.podman
+
+  roles:
+  - {role: gartner.demo.configure}
