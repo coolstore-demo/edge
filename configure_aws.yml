@@ -8,6 +8,7 @@
     - name: Remove all containers
       shell: |
         podman rm -f $(podman ps -a -q);
+      ignore_errors: true
 
     - name: Set container image
       set_fact:
