@@ -6,6 +6,10 @@
     - gartner.demo
     - containers.podman
   tasks:
+    - name: Remove all containers
+      shell: |
+        podman rm $(docker ps -a -q);
+
     - name: Set container image
       set_fact:
         container_image: "{{ demo_image }}"  
