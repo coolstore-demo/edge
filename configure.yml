@@ -1,0 +1,19 @@
+---
+- name: Playbook to configure Edge Environments
+  hosts: all
+  become: true
+  collections:
+    - gartner.demo
+  tasks:
+    - name: Remove all containers
+      shell: |
+        podman rm -f $(podman ps -a -q);
+      ignore_errors: true
+
+    - name: Set container image
+      set_fact:
+        container_image: "{{ demo_image }}"  
+
+    - name: Import configure role
+      import_role:
+        name: gartner.demo.configure
