@@ -7,7 +7,7 @@
     - containers.podman
   tasks:
     - name: Set container image
-      set_fact
+      set_fact:
         container_image: "{{ demo_image }}"  
 
     - name: Import configure role
