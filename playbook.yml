@@ -8,6 +8,7 @@
 
   roles:
   - {role: gartner.demo.aws, when: my_name is defined}
+  - {role: gartner.demo.gcp, when: my_name is defined}
 
 - name: Playbook to configure Edge Environments
   hosts: all
