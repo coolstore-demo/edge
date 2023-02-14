@@ -7,10 +7,11 @@
     - containers.podman
 
   tasks:
-  - name: Set container image
-    ansible.builtin.set_stats:
-      data:
-        container_image: "{{ demo_image }}  
+    - name: Set container image
+      ansible.builtin.set_stats:
+        data:
+          container_image: "{{ demo_image }}  
 
-  roles:
-  - {role: gartner.demo.configure}
+    - name: Import configure role
+      import_role:
+        name: gartner.demo.configure
