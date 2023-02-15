@@ -28,7 +28,7 @@
     - name: Set container images
       set_fact:
         web_image: "{{ prod_web_image }}"
-        inventory_image: "{{ prod_inventory_image }}
+        inventory_image: "{{ prod_inventory_image }}"
         vertx_image: "{{ prod_vertx_image }}"
         springboot_image: "{{ prod_springboot_image }}"
          
