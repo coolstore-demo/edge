@@ -41,6 +41,7 @@
           - '443'
           - '8080'
           - '8090'
+          - '9000'
     project: "{{ gcp_project }}"
     network: "{{ network }}"
     auth_kind: serviceaccount
