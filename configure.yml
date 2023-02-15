@@ -20,9 +20,11 @@
         name: gartner.demo.configure
 
     - name: debug
-      debug:
-        var: group_names
-
-    - name: debug
       debug: 
         var: hostvars[inventory_hostname].public_ip_address
+      when: group_names[0] == 'aws_ec2'
+
+    - name: debug
+      debug:
+        var: var: hostvars[inventory_hostname].ansible_host
+      when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
