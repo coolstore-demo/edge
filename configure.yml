@@ -21,4 +21,4 @@
 
     - name: debug
       debug: 
-        msg: ansible_facts
+        var: ansible_facts
