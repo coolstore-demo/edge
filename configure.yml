@@ -26,5 +26,5 @@
 
     - name: debug
       debug:
-        var: var: hostvars[inventory_hostname].ansible_host
+        var: hostvars[inventory_hostname].ansible_host
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
