@@ -25,7 +25,7 @@
       when: group_names[0] == 'aws_ec2'
 
     - name: Stat for gcp
-      set_stats:
+      set_fact:
         gcp_edge_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
