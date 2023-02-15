@@ -35,9 +35,9 @@
            msg: 'Failed'
          when: true
 
-    rescue:
-      - name: set stats
-        set_stats:
+     rescue:
+       - name: set stats
+         set_stats:
            data:
              aws_edge_address: "{{ aws_edge_address }}"
              gcp_edge_address: "{{ gcp_edge_address }}"
