@@ -42,5 +42,6 @@
       rescue:
         - name: set stats
           set_stats:
-           data:
-             msg_body_1: "This was a test"
+            aggregate: no
+            data:
+              msg_body_1: "This was a test"
