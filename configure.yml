@@ -29,13 +29,13 @@
         gcp_edge_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
-   - block:
+    - block:
        - name: Fail Task
          fail:
            msg: 'Failed'
          when: true
 
-     rescue:
+      rescue:
        - name: set stats
          set_stats:
            data:
