@@ -13,12 +13,12 @@
 
     - name: fact for aws instance
       set_fact:
-        container_address: "http://{{ hostvars[inventory_hostname].public_ip_address }}"
+        container_address: "{{ hostvars[inventory_hostname].public_ip_address }}"
       when: group_names[0] == 'aws_ec2'
 
     - name: fact for gcp
       set_fact:
-        container_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
+        container_address: "{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
     - name: Set container images
@@ -43,11 +43,11 @@
        - name: set stats
          set_stats:
            data:
-             aws_edge_address: "{{ container_address }}"
+             aws_edge_address: "http://{{ container_address }}"
          when: group_names[0] == 'aws_ec2'
 
        - name: set stats
          set_stats:
            data:
-             gcp_edge_address: "{{ container_address }}"
+             gcp_edge_address: "http://{{ container_address }}"
          when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
