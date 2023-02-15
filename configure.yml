@@ -11,23 +11,31 @@
         podman rm -f $(podman ps -a -q);
       ignore_errors: true
 
-    - name: Set container image
-      set_fact:
-        container_image: "{{ demo_image }}"  
-
-    - name: Import configure role
-      import_role:
-        name: gartner.demo.configure
-
-    - name: Stat for aws instance
+    - name: fact for aws instance
       set_fact:
         aws_edge_address: "http://{{ hostvars[inventory_hostname].public_ip_address }}"
       when: group_names[0] == 'aws_ec2'
 
-    - name: Stat for gcp
+    - name: fact for gcp
       set_fact:
         gcp_edge_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
+
+    - name: Set public address
+      set_fact:
+        container_address: "{{ aws_edge_address | gcp_edge_address }}"
+
+    - name: Set container images
+      set_fact:
+        web_image: "{{ prod_web_image }}"
+        inventory_image: "{{ prod_inventory_image }}
+        vertx_image: "{{ prod_vertx_image }}"
+        springboot_image: "{{ prod_springboot_image }}"
+         
+
+    - name: Import configure role
+      import_role:
+        name: gartner.demo.configure
 
     - block:
        - name: Fail Task

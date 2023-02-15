@@ -1,11 +1,37 @@
 ---
-- name: Create container
+- name: Create inventory container
   containers.podman.podman_container:
-    name: "{{ container_name }}"
-    image: "{{ container_image }}"
+    name: "Inventory"
+    image: "{{ inventory_image }}"
+    state: started
+    ports:
+      - "8080:8080"
+
+- name: Create springboot container
+  containers.podman.podman_container:
+    name: "Springboot"
+    image: "{{ springboot_image }}"
+    state: started
+    ports:
+      - "9000:8080"
+
+- name: Create vertx container
+  containers.podman.podman_container:
+    name: "Vertx"
+    image: "{{ vertx_image }}"
+    state: started
+    ports:
+      - "8090:8080"
+    env:
+      COMPONENT_CATALOG_HOST: "{{ container_address }}"
+      COMPONENT_CATALOG_PORT: "9000"
+      COMPONENT_INVENTORY_HOST: "{{ container_address }}"
+      COMPONENT_INVENTORY_PORT: "8080"
+
+- name: Create web container
+  containers.podman.podman_container:
+    name: "Web"
+    image: "{{ web_image }}"
     state: started
     ports:
       - "80:8080"
-#    env:
-#      SECURE_COOLSTORE_GW_ENDPOINT: "https://gateway-vertx-coolstore-prod.apps.rhte.0x74.p1.openshiftapps.com/"
-#       COOLSTORE_GW_ENDPOINT: "http://gateway-vertx-coolstore-prod.apps.rhte.0x74.p1.openshiftapps.com/"
