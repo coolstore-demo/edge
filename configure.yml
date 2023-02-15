@@ -20,5 +20,9 @@
         name: gartner.demo.configure
 
     - name: debug
+      debug:
+        var: groupvars
+
+    - name: debug
       debug: 
-        var: hostvars
+        var: hostvars[inventory_hostname].public_ip_address
