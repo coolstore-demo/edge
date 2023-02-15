@@ -21,4 +21,4 @@
 
     - name: debug
       debug: 
-        var: ansible_facts
+        var: hostvars
