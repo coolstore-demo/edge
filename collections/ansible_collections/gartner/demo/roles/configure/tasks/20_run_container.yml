@@ -8,3 +8,4 @@
       - "80:8080"
     env:
       SECURE_COOLSTORE_GW_ENDPOINT: "https://gateway-vertx-coolstore-prod.apps.rhte.0x74.p1.openshiftapps.com/"
+      COOLSTORE_GW_ENDPOINT: "http://gateway-vertx-coolstore-prod.apps.rhte.0x74.p1.openshiftapps.com/"
