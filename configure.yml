@@ -20,4 +20,5 @@
         name: gartner.demo.configure
 
     - name: debug
-      msg: ansible_facts
+      debug: 
+        msg: ansible_facts
