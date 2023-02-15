@@ -20,19 +20,25 @@
         name: gartner.demo.configure
 
     - name: Stat for aws instance
-      set_stats:
-        data: 
-          aws_edge_address: "http://{{ hostvars[inventory_hostname].public_ip_address }}"
-        per_host: yes
-        aggregate: no
+      set_fact:
+        aws_edge_address: "http://{{ hostvars[inventory_hostname].public_ip_address }}"
       when: group_names[0] == 'aws_ec2'
 
     - name: Stat for gcp
       set_stats:
-        data:
-          gcp_edge_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
-        per_host: yes
-        aggregate: no
+        gcp_edge_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
+   - block:
+       - name: Fail Task
+         fail:
+           msg: 'Failed'
+         when: true
+
+    rescue:
+      - name: set stats
+        set_stats:
+           data:
+             aws_edge_address: "{{ aws_edge_address }}"
+             gcp_edge_address: "{{ gcp_edge_address }}"
 
