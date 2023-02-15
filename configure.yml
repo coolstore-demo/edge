@@ -21,10 +21,6 @@
         container_address: "http://{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
-    - name: Set public address
-      set_fact:
-        container_address: "{{ aws_edge_address | gcp_edge_address }}"
-
     - name: Set container images
       set_fact:
         web_image: "{{ prod_web_image }}"
