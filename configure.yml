@@ -33,15 +33,4 @@
         per_host: yes
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
-    - block:
-        - name: Fail Task
-          fail:
-            msg: 'Failed'
-          when: true
 
-      rescue:
-        - name: set stats
-          set_stats:
-            aggregate: no
-            data:
-              msg_body_1: "This was a test"
