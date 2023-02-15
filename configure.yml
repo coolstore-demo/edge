@@ -21,7 +21,7 @@
 
     - name: debug
       debug:
-        var: group_vars
+        var: group_names
 
     - name: debug
       debug: 
