@@ -43,11 +43,11 @@
        - name: set stats
          set_stats:
            data:
-             aws_edge_address: "http://{{ container_address }}"
+             aws_edge_address: "http://kiosk1-dub.demoredhat.com"
          when: group_names[0] == 'aws_ec2'
 
        - name: set stats
          set_stats:
            data:
-             gcp_edge_address: "http://{{ container_address }}"
+             gcp_edge_address: "http://kiosk1-jhb.demoredhat.com"
          when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
