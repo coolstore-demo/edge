@@ -49,7 +49,7 @@
              dublin_store_kiosk4: "http://kiosk4-dub.demoredhat.com"
              dublin_store_kiosk5: "http://kiosk5-dub.demoredhat.com"
          #when: group_names[0] == 'aws_ec2'
-         when: location = 'Dublin'
+         when: location == 'Dublin'
 
        - name: set stats
          set_stats:
