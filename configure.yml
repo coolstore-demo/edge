@@ -48,7 +48,8 @@
              dublin_store_kiosk3: "http://kiosk3-dub.demoredhat.com"
              dublin_store_kiosk4: "http://kiosk4-dub.demoredhat.com"
              dublin_store_kiosk5: "http://kiosk5-dub.demoredhat.com"
-         when: group_names[0] == 'aws_ec2'
+         #when: group_names[0] == 'aws_ec2'
+         when: location = 'Dublin'
 
        - name: set stats
          set_stats:
@@ -56,4 +57,5 @@
              jhb_store_kiosk1: "http://kiosk1-jhb.demoredhat.com"
              jhb_store_kiosk2: "http://kiosk2-jhb.demoredhat.com"
              jhb_store_kiosk3: "http://kiosk3-jhb.demoredhat.com"
-         when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
+         #when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
+         when: location == 'JHB'
