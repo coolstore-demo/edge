@@ -27,7 +27,8 @@
 
     - name: Set common quay io URL
       ansible.builtin.set_fact:
-        docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay.io/coolstore-demo') }}"
+        docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay.io/coolstore-demo') | regex_replace('/[^/]+$', '') }}"
+
 
     - name: Set container images
       ansible.builtin.set_fact:
