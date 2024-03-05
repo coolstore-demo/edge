@@ -1,9 +1,9 @@
 ---
-- name: Ansible Playbook for PVC and VolumeSnapshot
+- name: Ansible Playbook for testing coolstore EDA
   hosts: localhost
   connection: local
   gather_facts: true
-  task:
+  tasks:
     - name: Debug details
       ansible.builtin.debug:
         var: ansible_eda.event.payload.name
