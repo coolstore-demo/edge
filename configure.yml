@@ -8,7 +8,7 @@
   vars:
     prod_web_image: quay.io/coolstore-demo/web-nodejs:1.0.0
     prod_inventory_image: quay.io/coolstore-demo/inventory-quarkus:1.0.0
-    prod_vertx_image: quay.io/coolstore-demo/gateway-vertx:1.0.0
+    prod_vertx_image: quay.io/coolstore-demo/gateway-vertx:latest
     prod_springboot_image: quay.io/coolstore-demo/catalog-spring-boot:1.0.0
     image_update_mapping:
       web-nodejs: prod_web_image
