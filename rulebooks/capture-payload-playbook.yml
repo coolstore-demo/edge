@@ -11,5 +11,5 @@
       condition: event.meta is defined
       action:
         run_job_template:
-          name: Payload-Debug
+          name: 'Deploy app at Dublin store kiosks'
           organization: Default
