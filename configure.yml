@@ -8,13 +8,7 @@
   vars:
     prod_web_image: quay.io/coolstore-demo/web-nodejs:1.0.0
     prod_inventory_image: quay.io/coolstore-demo/inventory-quarkus:1.0.0
-    prod_vertx_image: quay.io/coolstore-demo/gateway-vertx:latest
     prod_springboot_image: quay.io/coolstore-demo/catalog-spring-boot:1.0.0
-    image_update_mapping:
-      web-nodejs: prod_web_image
-      inventory-quarkus: prod_inventory_image
-      gateway-vertx: prod_vertx_image
-      catalog-spring-boot: prod_springboot_image    
   tasks:
     - name: Remove all containers
       shell: |
@@ -31,16 +25,15 @@
         container_address: "{{ hostvars[inventory_hostname].ansible_host }}"
       when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
-    - name: Dynamically update image variable based on the event
-      set_fact:
-        "{{ image_update_mapping[ansible_eda.event.payload.name] }}": "{{ lookup('vars', image_update_mapping[ansible_eda.event.payload.name]) | regex_replace(':[^:]+$', '') }}:{{ ansible_eda.event.payload.updated_tags[0] }}"
-      when: ansible_eda.event.payload.name in image_update_mapping
+    - name: Set common quay io URL
+      ansible.builtin.set_fact:
+        docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay.io/coolstore-demo') }}"
 
     - name: Set container images
-      set_fact:
+      ansible.builtin.set_fact:
         web_image: "{{ prod_web_image }}"
         inventory_image: "{{ prod_inventory_image }}"
-        vertx_image: "{{ prod_vertx_image }}"
+        vertx_image: "{{ docker_url }}/{{ ansible_eda.event.payload.name | default('gateway-vertx') }}:{{ ansible_eda.event.payload.updated_tags[0] | default('latest') }}"
         springboot_image: "{{ prod_springboot_image }}"
          
 
