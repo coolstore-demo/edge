@@ -1,4 +1,10 @@
 ---
+- name: Login to quay.io and create ${XDG_RUNTIME_DIR}/containers/auth.json
+  containers.podman.podman_login:
+    username: "{{ quay_user }}"
+    password: "{{ quay_password }}"
+    registry: "{{ quay_registry }}"
+
 - name: Create inventory container
   containers.podman.podman_container:
     name: "Inventory"
