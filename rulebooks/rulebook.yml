@@ -11,5 +11,5 @@
       condition: event.meta is defined
       action:
         run_workflow_template:
-          name: 'Configure store edge deployment'
+          name: 'Coolstuff store edge deployment'
           organization: Default
