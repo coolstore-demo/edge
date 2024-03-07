@@ -15,6 +15,16 @@
     - Vertx
     - Web
 
+- name: Force pull images
+  containers.podman.podman_image:
+    name: "{{ item }}"
+    force: true
+  loop:
+    - "{{ inventory_image }}"
+    - "{{ springboot_image }}"
+    - "{{ vertx_image }}"
+    - "{{ web_image }}"
+
 - name: Create inventory container
   containers.podman.podman_container:
     name: "Inventory"
