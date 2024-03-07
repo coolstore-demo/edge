@@ -8,6 +8,6 @@
 
   rules:
     - name: Capture all other events from this source
-      condition: event.meta is defined
+      condition: event.payload.updated_tags is not select("search","sha256")
       action:
         debug:
