@@ -5,6 +5,16 @@
     password: "{{ quay_password }}"
     registry: "{{ quay_registry }}"
 
+- name: Remove containers if already exist
+  containers.podman.podman_container:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - Inventory
+    - Springboot
+    - Vertx
+    - Web
+
 - name: Create inventory container
   containers.podman.podman_container:
     name: "Inventory"
