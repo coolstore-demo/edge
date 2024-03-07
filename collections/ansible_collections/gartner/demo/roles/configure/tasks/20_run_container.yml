@@ -10,6 +10,7 @@
     name: "Inventory"
     image: "{{ inventory_image }}"
     state: started
+    recreate: true
     ports:
       - "8080:8080"
 
@@ -18,6 +19,7 @@
     name: "Springboot"
     image: "{{ springboot_image }}"
     state: started
+    recreate: true
     ports:
       - "9000:8080"
 
@@ -26,6 +28,7 @@
     name: "Vertx"
     image: "{{ vertx_image }}"
     state: started
+    recreate: true
     ports:
       - "8090:8080"
     env:
@@ -39,6 +42,7 @@
     name: "Web"
     image: "{{ web_image }}"
     state: started
+    recreate: true
     ports:
       - "80:8080"
     env:
