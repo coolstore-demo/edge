@@ -2,8 +2,8 @@
 - name: Playbook to create Edge Environments
   hosts: localhost
   collections:
-    - gartner.demo
+    - redhat.demo
 
   roles:
-  - {role: gartner.demo.aws, when: my_name is defined}
-  - {role: gartner.demo.gcp, when: gcp_region is defined}
+  - {role: redhat.demo.aws, when: my_name is defined}
+  - {role: redhat.demo.gcp, when: gcp_region is defined}

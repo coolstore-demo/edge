@@ -4,7 +4,7 @@
   become: true
   gather_facts: true
   collections:
-    - gartner.demo
+    - redhat.demo
   vars:
     prod_web_image: quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin/coolstore-webapp-nodejs:latest
     prod_vertx_image: quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin/coolstore-gateway-vertx:latest
@@ -40,7 +40,7 @@
 
     - name: Import configure role
       import_role:
-        name: gartner.demo.configure
+        name: redhat.demo.configure
 
     - block:
        - name: Fail Task
