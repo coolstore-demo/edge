@@ -14,6 +14,7 @@
     - Springboot
     - Vertx
     - Web
+    - MobileWeb
     
 - name: Force pull images
   containers.podman.podman_image:
@@ -24,6 +25,34 @@
     - "{{ springboot_image }}"
     - "{{ vertx_image }}"
     - "{{ web_image }}"
+
+- name: Install Nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name: Configure Nginx
+  ansible.builtin.copy:
+    content: |
+      server {
+          listen 80;
+          server_name kiosk1-dub.demoredhat.com/;
+          
+          location / {
+              proxy_pass http://localhost:80;
+          }
+      }
+      
+      server {
+          listen 80;
+          server_name mobile.kiosk1-dub.demoredhat.com;
+          
+          location / {
+              proxy_pass http://localhost:8081;
+          }
+      }
+    dest: /etc/nginx/conf.d/sites.conf
+  notify: Restart Nginx
 
 - name: Create inventory container
   containers.podman.podman_container:
@@ -67,3 +96,15 @@
       - "80:8080"
     env:
       COOLSTORE_GW_ENDPOINT="http://{{ container_address}}:8090"
+
+- name: Create mobile web container
+  containers.podman.podman_container:
+    name: "MobileWeb"
+    image: "{{ mobile_web_image }}"
+    state: started
+    recreate: true
+    ports:
+      - "8081:8080"
+    env:
+      COOLSTORE_GW_ENDPOINT: "http://{{ container_address}}:8090"
+
