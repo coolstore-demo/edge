@@ -9,6 +9,7 @@
     prod_web_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-webapp-nodejs:latest
     prod_vertx_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-gateway-vertx:latest
     prod_springboot_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-catalog-spring:latest
+    prod_mobileweb_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/mobileweb:latest
   tasks:
     - name: Remove all containers
       shell: |
@@ -36,6 +37,7 @@
         vertx_image: "{{ prod_vertx_image }}"
         inventory_image: "{{ docker_url }}/{{ ansible_eda.event.payload.name | default('coolstore-inventory-quarkus') }}:{{ ansible_eda.event.payload.updated_tags[0] | default('latest') }}"
         springboot_image: "{{ prod_springboot_image }}"
+        mobileweb_image: "{{ prod_mobileweb_image }}"
          
 
     - name: Import configure role
