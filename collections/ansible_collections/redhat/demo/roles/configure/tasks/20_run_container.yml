@@ -115,5 +115,5 @@
     ports:
       - "8082:8080"
     env:
-      COOLSTORE_GW_ENDPOINT: "http://{{ container_address}}:8090"
+      COOLSTORE_GW_ENDPOINT="http://{{ container_address}}:8090"
 
