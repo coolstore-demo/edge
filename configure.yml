@@ -35,7 +35,7 @@
       ansible.builtin.set_fact:
         web_image: "{{ prod_web_image }}"
         vertx_image: "{{ prod_vertx_image }}"
-        inventory_image: "{{ docker_url }}/{{ ansible_eda.event.payload.name | default('coolstore-inventory-quarkus') }}:{{ ansible_eda.event.payload.updated_tags[0] | default('latest') }}"
+        inventory_image: "{{ docker_url }}/quayadmin/{{ ansible_eda.event.payload.name | default('coolstore-inventory-quarkus') }}:{{ ansible_eda.event.payload.updated_tags[0] | default('latest') }}"
         springboot_image: "{{ prod_springboot_image }}"
         mobileweb_image: "{{ prod_mobileweb_image }}"
          
