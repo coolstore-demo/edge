@@ -40,7 +40,7 @@
           server_name kiosk1-dub.demoredhat.com;
           
           location / {
-              proxy_pass http://localhost:80;
+              proxy_pass http://localhost:8081;
           }
       }
       
@@ -49,7 +49,7 @@
           server_name mobile.kiosk1-dub.demoredhat.com;
           
           location / {
-              proxy_pass http://localhost:8081;
+              proxy_pass http://localhost:8082;
           }
       }
     dest: /etc/nginx/conf.d/sites.conf
@@ -94,7 +94,7 @@
     state: started
     recreate: true
     ports:
-      - "80:8080"
+      - "8081:8080"
     env:
       COOLSTORE_GW_ENDPOINT="http://{{ container_address}}:8090"
 
@@ -105,7 +105,7 @@
     state: started
     recreate: true
     ports:
-      - "8081:8080"
+      - "8082:8080"
     env:
       COOLSTORE_GW_ENDPOINT: "http://{{ container_address}}:8090"
 
