@@ -14,8 +14,7 @@
     - Springboot
     - Vertx
     - Web
-    - MobileWeb
-
+    
 - name: Force pull images
   containers.podman.podman_image:
     name: "{{ item }}"
@@ -25,7 +24,6 @@
     - "{{ springboot_image }}"
     - "{{ vertx_image }}"
     - "{{ web_image }}"
-    - "{{ mobileweb_image }}"
 
 - name: Create inventory container
   containers.podman.podman_container:
