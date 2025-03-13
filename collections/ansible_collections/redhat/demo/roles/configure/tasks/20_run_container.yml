@@ -27,42 +27,6 @@
     - "{{ web_image }}"
     - "{{ mobileweb_image }}"
 
-- name: Install Nginx
-  ansible.builtin.package:
-    name: nginx
-    state: present
-
-- name: Configure Nginx
-  ansible.builtin.copy:
-    content: |
-      server {
-          listen 80;
-          server_name kiosk1-dub.demoredhat.com;
-          
-          location / {
-              proxy_pass http://localhost:8081;
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-          }
-      }
-      
-      server {
-          listen 80;
-          server_name mobile.kiosk1-dub.demoredhat.com;
-          
-          location / {
-              proxy_pass http://localhost:8082;
-              proxy_set_header Host $host;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-          }
-      }
-    dest: /etc/nginx/conf.d/sites.conf
-  notify: Restart Nginx
-
 - name: Create inventory container
   containers.podman.podman_container:
     name: "Inventory"
@@ -102,7 +66,7 @@
     state: started
     recreate: true
     ports:
-      - "8081:8080"
+      - "80:8080"
     env:
       COOLSTORE_GW_ENDPOINT="http://{{ container_address}}:8090"
 
@@ -113,7 +77,7 @@
     state: started
     recreate: true
     ports:
-      - "8082:8080"
+      - "8081:8080"
     env:
       COOLSTORE_GW_ENDPOINT="http://{{ container_address}}:8090"
 
