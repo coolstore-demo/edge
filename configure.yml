@@ -6,9 +6,9 @@
   collections:
     - redhat.demo
   vars:
-    prod_web_image: quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin/coolstore-webapp-nodejs:latest
-    prod_vertx_image: quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin/coolstore-gateway-vertx:latest
-    prod_springboot_image: quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin/coolstore-catalog-spring:latest
+    prod_web_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-webapp-nodejs:latest
+    prod_vertx_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-gateway-vertx:latest
+    prod_springboot_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-catalog-spring:latest
   tasks:
     - name: Remove all containers
       shell: |
@@ -27,8 +27,8 @@
 
     - name: Set common quay io URL
       ansible.builtin.set_fact:
-        docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com') | regex_replace('/[^/]+$', '') }}"
-#         docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay-vkx45.apps.cluster-vkx45.sandbox1935.opentlc.com/quayadmin') }}"
+        docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com') | regex_replace('/[^/]+$', '') }}"
+#         docker_url: "{{ ansible_eda.event.payload.docker_url | default('quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com') }}"
 
     - name: Set container images
       ansible.builtin.set_fact:
