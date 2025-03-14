@@ -44,29 +44,22 @@
       import_role:
         name: redhat.demo.configure
 
-    - block:
-       - name: Fail Task
-         fail:
-           msg: 'Failed'
-         when: true
+    - name: set stats
+      set_stats:
+        data:
+          dublin_store_kiosk1: "http://kiosk1-dub.demoredhat.com"
+          dublin_store_kiosk2: "http://kiosk2-dub.demoredhat.com"
+          dublin_store_kiosk3: "http://kiosk3-dub.demoredhat.com"
+          dublin_store_kiosk4: "http://kiosk4-dub.demoredhat.com"
+          dublin_store_kiosk5: "http://kiosk5-dub.demoredhat.com"
+      #when: group_names[0] == 'aws_ec2'
+      when: location == 'Dublin'
 
-      rescue:
-       - name: set stats
-         set_stats:
-           data:
-             dublin_store_kiosk1: "http://kiosk1-dub.demoredhat.com"
-             dublin_store_kiosk2: "http://kiosk2-dub.demoredhat.com"
-             dublin_store_kiosk3: "http://kiosk3-dub.demoredhat.com"
-             dublin_store_kiosk4: "http://kiosk4-dub.demoredhat.com"
-             dublin_store_kiosk5: "http://kiosk5-dub.demoredhat.com"
-         #when: group_names[0] == 'aws_ec2'
-         when: location == 'Dublin'
-
-       - name: set stats
-         set_stats:
-           data:
-             jhb_store_kiosk1: "http://kiosk1-jhb.demoredhat.com"
-             jhb_store_kiosk2: "http://kiosk2-jhb.demoredhat.com"
-             jhb_store_kiosk3: "http://kiosk3-jhb.demoredhat.com"
-         #when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
-         when: location == 'JHB'
+    - name: set stats
+      set_stats:
+        data:
+          jhb_store_kiosk1: "http://kiosk1-jhb.demoredhat.com"
+          jhb_store_kiosk2: "http://kiosk2-jhb.demoredhat.com"
+          jhb_store_kiosk3: "http://kiosk3-jhb.demoredhat.com"
+      #when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
+      when: location == 'JHB'
