@@ -16,15 +16,15 @@
         podman rm -f $(podman ps -a -q);
       ignore_errors: true
 
-    - name: fact for aws instance
+    - name: Gathering Facts for Dublin Edge
       set_fact:
         container_address: "{{ hostvars[inventory_hostname].public_ip_address }}"
       when: group_names[0] == 'aws_ec2'
 
-    - name: fact for gcp
-      set_fact:
-        container_address: "{{ hostvars[inventory_hostname].ansible_host }}"
-      when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
+#    - name: fact for gcp
+#      set_fact:
+#        container_address: "{{ hostvars[inventory_hostname].ansible_host }}"
+#      when: group_names[0] == 'gcp' or group_names[0] == 'ungrouped'
 
     - name: Set common quay io URL
       ansible.builtin.set_fact:
@@ -44,7 +44,7 @@
       import_role:
         name: redhat.demo.configure
 
-    - name: set stats
+    - name: set stats for Dublin-Edge
       set_stats:
         data:
           dublin_store_kiosk1: "http://kiosk1-dub.demoredhat.com"
@@ -55,7 +55,7 @@
       #when: group_names[0] == 'aws_ec2'
       when: location == 'Dublin'
 
-    - name: set stats
+    - name: set stats for JHB-Edge
       set_stats:
         data:
           jhb_store_kiosk1: "http://kiosk1-jhb.demoredhat.com"
