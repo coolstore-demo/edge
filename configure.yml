@@ -14,9 +14,7 @@
     - "collections/ansible_collections/redhat/demo/roles/configure/vars/vault.yml"
   tasks:
     - name: Remove all containers
-      shell: |
-        podman rm -f $(podman ps -a -q);
-      ignore_errors: true
+      shell: "podman ps -a -q | xargs -r podman rm -f"
 
     - name: Gathering Facts for Dublin Edge
       set_fact:
