@@ -1,2 +1,3 @@
 ---
 # vars file for aws
+- include_vars: vault.yml
