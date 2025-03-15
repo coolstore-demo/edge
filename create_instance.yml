@@ -3,6 +3,8 @@
   hosts: localhost
   collections:
     - redhat.demo
+  vars_files:
+    - "collections/ansible_collections/redhat/demo/roles/aws/vars/vault.yml"
 
   roles:
   - {role: redhat.demo.aws, when: my_name is defined}
