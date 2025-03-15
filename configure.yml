@@ -10,6 +10,8 @@
     prod_vertx_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-gateway-vertx:latest
     prod_springboot_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/coolstore-catalog-spring:latest
     prod_mobileweb_image: quay-kpmhs.apps.cluster-kpmhs.kpmhs.sandbox163.opentlc.com/quayadmin/mobileweb:latest
+  vars_files:
+    - "collections/ansible_collections/redhat/demo/roles/configure/vars/vault.yml"
   tasks:
     - name: Remove all containers
       shell: |
